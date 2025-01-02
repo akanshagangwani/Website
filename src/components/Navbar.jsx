@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+    
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Function to scroll to the top of the page
@@ -59,12 +60,14 @@ const Navbar = () => {
       {/* Desktop/Tablet View (Links) */}
       <div className="hidden sm:flex items-center gap-8">
         <div className="flex items-center gap-6">
-        <button
+        {/* <button
             onClick={scrollToTop} // Use the scrollToTop function
             className="text-white hover:text-pink-400 transition-colors"
-          >
+          > */}
+          <Link to="/" className="text-white hover:text-pink-400 transition-colors">
             Home
-          </button>
+          </Link>
+          {/* </button> */}
           <Link to="/about" className="text-white hover:text-pink-400 transition-colors">
             About Us
           </Link>

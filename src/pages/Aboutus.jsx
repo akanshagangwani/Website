@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 const AboutUs = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imagePath] = useState('/src/assets/demoimage.jpeg');
+  const [imagePath] = useState('/src/assets/');
   const [secondImageLoaded, setSecondImageLoaded] = useState(false);
   const [secondImagePath] = useState('/src/assets/secondimage.jpeg');
 
@@ -90,12 +90,12 @@ const AboutUs = () => {
             </div>
             
             <div className="text-white space-y-6">
-              <h2 className="text-4xl font-bold mb-6">What is GameCraftor?</h2>
+              <h2 className="text-4xl font-bold mb-6">About the Company</h2>
               <p className="text-lg text-justify leading-relaxed">
-                GameCraftor is an innovative board game design application that enables users to create, modify, and test their game ideas seamlessly. With an intuitive interface and powerful features, GameCraftor streamlines the entire process from ideation to production.
+              Synergim is a premier software development company and IT consulting firm based in the USA. We offer a wide range of global services, including product development, customized solutions, strategic consulting, website development, and dynamic mobile applications.
               </p>
               <p className="text-lg text-justify leading-relaxed">
-                With GameCraftor, you can dive right into designing new games from scratch, edit and fine-tune existing ones, or rigorously test your ideas through immersive simulations. We're here to make sure your creative journey from concept to physical production is smooth and satisfying.
+              Synergim’s impact on the software development landscape is undeniable. With a commitment to innovation, excellence, and tailoring solutions to unique business needs, it stands as a top software development company and IT consulting firm, and the best web development service provider in the USA. 
               </p>
             </div>
           </div>

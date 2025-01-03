@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-    
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Function to scroll to the top of the page
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // Smooth scrolling
+      //behavior: 'smooth', // Smooth scrolling
     });
     setIsMobileMenuOpen(false); // Close mobile menu if open
   };
@@ -60,17 +59,23 @@ const Navbar = () => {
       {/* Desktop/Tablet View (Links) */}
       <div className="hidden sm:flex items-center gap-8">
         <div className="flex items-center gap-6">
-        {/* <button
-            onClick={scrollToTop} // Use the scrollToTop function
+          
+          <Link 
+            to="/" 
             className="text-white hover:text-pink-400 transition-colors"
-          > */}
-          <Link to="/" className="text-white hover:text-pink-400 transition-colors">
+            onClick={scrollToTop} // Scroll to top when Home is clicked
+          >
             Home
           </Link>
-          {/* </button> */}
-          <Link to="/about" className="text-white hover:text-pink-400 transition-colors">
+
+          <Link 
+            to="/about" 
+            className="text-white hover:text-pink-400 transition-colors"
+            onClick={scrollToTop} // Scroll to top when About Us is clicked
+          >
             About Us
           </Link>
+
           <button
             onClick={scrollToBottom} // Use the scrollToBottom function
             className="text-white hover:text-pink-400 transition-colors"
@@ -90,16 +95,40 @@ const Navbar = () => {
       {/* Mobile Menu (hidden on desktop, shown when toggled on mobile) */}
       <div className={`sm:hidden absolute top-16 left-0 w-full bg-black p-6 transition-all ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
         <div className="flex flex-col items-center gap-4">
-          <Link to="/" className="text-white hover:text-pink-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link 
+            to="/" 
+            className="text-white hover:text-pink-400 transition-colors" 
+            onClick={() => {
+              scrollToTop(); // Scroll to top when Home is clicked
+              setIsMobileMenuOpen(false); // Close mobile menu
+            }}
+          >
             Home
           </Link>
-          <Link to="/about" className="text-white hover:text-pink-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+
+          < Link 
+            to="/about" 
+            className="text-white hover:text-pink-400 transition-colors" 
+            onClick={() => {
+              scrollToTop(); // Scroll to top when About Us is clicked
+              setIsMobileMenuOpen(false); // Close mobile menu
+            }}
+          >
             About Us
           </Link>
-          <Link to="/contact" className="text-white hover:text-pink-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+
+          <Link 
+            to="/contact" 
+            className="text-white hover:text-pink-400 transition-colors" 
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             Contact Us
           </Link>
-          <button className="bg-pink-400 hover:bg-pink-500 text-white px-6 py-2 rounded-full transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+          
+          <button 
+            className="bg-pink-400 hover:bg-pink-500 text-white px-6 py-2 rounded-full transition-colors" 
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
             Download App
           </button>
         </div>

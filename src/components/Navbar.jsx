@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation(); // Get current route location
+
+  // Function to check if a path is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   // Function to scroll to the top of the page
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      //behavior: 'smooth', // Smooth scrolling
     });
-    setIsMobileMenuOpen(false); // Close mobile menu if open
+    setIsMobileMenuOpen(false);
   };
 
   // Function to scroll to the bottom of the page
   const scrollToBottom = () => {
     const start = window.scrollY;
     const end = document.documentElement.scrollHeight;
-    const duration = 1000; // Duration in milliseconds
+    const duration = 1000;
     const startTime = performance.now();
 
     const animateScroll = (currentTime) => {
       const elapsedTime = currentTime - startTime;
-      const progress = Math.min(elapsedTime / duration, 1); // Ensure progress doesn't exceed 1
-      const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // Easing function
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
       window.scrollTo(0, start + (end - start) * easeInOutQuad(progress));
 
       if (progress < 1) {
@@ -32,7 +37,7 @@ const Navbar = () => {
     };
 
     requestAnimationFrame(animateScroll);
-    setIsMobileMenuOpen(false); // Close mobile menu if open
+    setIsMobileMenuOpen(false);
   };
 
   const toggleMenu = () => {
@@ -62,22 +67,22 @@ const Navbar = () => {
           
           <Link 
             to="/" 
-            className="text-white hover:text-pink-400 transition-colors"
-            onClick={scrollToTop} // Scroll to top when Home is clicked
+            className={`transition-colors ${isActive('/') ? 'text-pink-400' : 'text-white hover:text-pink-400'}`}
+            onClick={scrollToTop}
           >
             Home
           </Link>
 
           <Link 
             to="/about" 
-            className="text-white hover:text-pink-400 transition-colors"
-            onClick={scrollToTop} // Scroll to top when About Us is clicked
+            className={`transition-colors ${isActive('/about') ? 'text-pink-400' : 'text-white hover:text-pink-400'}`}
+            onClick={scrollToTop}
           >
             About Us
           </Link>
 
           <button
-            onClick={scrollToBottom} // Use the scrollToBottom function
+            onClick={scrollToBottom}
             className="text-white hover:text-pink-400 transition-colors"
           >
             Contact Us
@@ -92,26 +97,26 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu (hidden on desktop, shown when toggled on mobile) */}
+      {/* Mobile Menu */}
       <div className={`sm:hidden absolute top-16 left-0 w-full bg-black p-6 transition-all ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
         <div className="flex flex-col items-center gap-4">
           <Link 
             to="/" 
-            className="text-white hover:text-pink-400 transition-colors" 
+            className={`transition-colors ${isActive('/') ? 'text-pink-400' : 'text-white hover:text-pink-400'}`}
             onClick={() => {
-              scrollToTop(); // Scroll to top when Home is clicked
-              setIsMobileMenuOpen(false); // Close mobile menu
+              scrollToTop();
+              setIsMobileMenuOpen(false);
             }}
           >
             Home
           </Link>
 
-          < Link 
+          <Link 
             to="/about" 
-            className="text-white hover:text-pink-400 transition-colors" 
+            className={`transition-colors ${isActive('/about') ? 'text-pink-400' : 'text-white hover:text-pink-400'}`}
             onClick={() => {
-              scrollToTop(); // Scroll to top when About Us is clicked
-              setIsMobileMenuOpen(false); // Close mobile menu
+              scrollToTop();
+              setIsMobileMenuOpen(false);
             }}
           >
             About Us
